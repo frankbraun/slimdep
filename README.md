@@ -18,4 +18,4 @@ go get -u -v github.com/frankbraun/slimdep
   consts).
 - Compile.
 - Loop: analyse error message -> introduce missing function -> compile again.
-- To support other platforms: cross compile (TODO).
+- To support other platforms: cross compile (option `-a`).

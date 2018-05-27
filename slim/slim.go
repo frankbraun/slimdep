@@ -13,7 +13,7 @@ import (
 )
 
 // Down slims down the vendor directory for the given rootPkg.
-func Down(rootPkg string, recursiveBuild bool) error {
+func Down(rootPkg string, recursiveBuild, allPlatforms bool) error {
 	log.Println("slim.Down()")
 	var err error
 	err = setupDirs(rootPkg)
@@ -69,7 +69,7 @@ func Down(rootPkg string, recursiveBuild bool) error {
 		// compile again
 		log.Println("build again")
 		buildErr := false
-		stderr, err := call.GoBuild(rootPkg, recursiveBuild)
+		stderr, err := call.GoBuild(rootPkg, recursiveBuild, "", "")
 		if err != nil {
 			buildErr = true
 			log.Println("build failed")
@@ -91,8 +91,26 @@ func Down(rootPkg string, recursiveBuild bool) error {
 			symbols = append(symbols, newSymbols...)
 			symbols = util.UniqueStrings(symbols)
 		} else if !buildErr {
-			log.Printf("done after %d iterations!", iterations)
-			return teardownDirs(nil, rootPkg) // done
+			if allPlatforms {
+				for _, platform := range call.Platforms {
+					log.Printf("build for %s/%s", platform.OS, platform.Arch)
+					stderr, err = call.GoBuild(rootPkg, recursiveBuild, platform.OS, platform.Arch)
+					if err != nil {
+						buildErr = true
+						log.Printf("build for %s/%s failed", platform.OS, platform.Arch)
+						newSymbols, err := parseBuildError(stderr)
+						if err != nil {
+							return teardownDirs(err, rootPkg)
+						}
+						symbols = append(symbols, newSymbols...)
+					}
+				}
+				symbols = util.UniqueStrings(symbols)
+			}
+			if !buildErr {
+				log.Printf("done after %d iterations!", iterations)
+				return teardownDirs(nil, rootPkg) // done
+			}
 		}
 		// read vendor tree again
 		vendorTree, err = code.ReadDir(hiddenVendorDir)

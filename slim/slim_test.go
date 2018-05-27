@@ -34,12 +34,12 @@ func TestSlimDown(t *testing.T) {
 			t.Error(err)
 		} else {
 			rootPkg := "github.com/frankbraun/slimdep/slim/testdata/" + test
-			stderr, err := call.GoBuild(rootPkg, false)
+			stderr, err := call.GoBuild(rootPkg, false, "", "")
 			if err != nil {
 				fmt.Fprint(os.Stderr, stderr.String())
 				t.Error(err)
 			} else {
-				err = slim.Down(rootPkg, false)
+				err = slim.Down(rootPkg, false, false)
 				if err != nil {
 					t.Error(err)
 				}

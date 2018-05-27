@@ -11,10 +11,11 @@ import (
 	"github.com/frankbraun/slimdep/util/call"
 )
 
-func slimDep(rootPkg string, recursiveBuild bool) error {
+func slimDep(rootPkg string, recursiveBuild, allPlatforms bool) error {
 	// make sure the root directory compiles before we start
 	log.Println("build root directory")
-	if stderr, err := call.GoBuild(rootPkg, recursiveBuild); err != nil {
+	stderr, err := call.GoBuild(rootPkg, recursiveBuild, "", "")
+	if err != nil {
 		fmt.Fprint(os.Stderr, stderr.String())
 		return err
 	}
@@ -26,7 +27,7 @@ func slimDep(rootPkg string, recursiveBuild bool) error {
 	}
 	// slim it down
 	log.Println("slim it down")
-	return slim.Down(rootPkg, recursiveBuild)
+	return slim.Down(rootPkg, recursiveBuild, allPlatforms)
 }
 
 func fatal(err error) {
@@ -41,6 +42,7 @@ func usage() {
 }
 
 func main() {
+	all := flag.Bool("a", false, "Support all platforms")
 	recursive := flag.Bool("r", false, "Build packages recursively (append '/...')")
 	verbose := flag.Bool("v", false, "Be verbose")
 	flag.Usage = usage
@@ -51,7 +53,7 @@ func main() {
 	if flag.NArg() == 0 {
 		usage()
 	}
-	if err := slimDep(flag.Arg(0), *recursive); err != nil {
+	if err := slimDep(flag.Arg(0), *recursive, *all); err != nil {
 		fatal(err)
 	}
 }
