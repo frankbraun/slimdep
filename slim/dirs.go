@@ -84,8 +84,5 @@ func teardownDirs(slimDownErr error, rootPkg string) error {
 		return slimDownErr
 	}
 	log.Println("success, remove hidden vendor dir")
-	if err := os.RemoveAll(hiddenVendorDir); err != nil {
-		return err
-	}
-	return nil
+	return os.RemoveAll(hiddenVendorDir)
 }
