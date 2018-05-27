@@ -79,7 +79,6 @@ func Down(rootPkg string, recursiveBuild bool) error {
 			}
 			symbols = append(symbols, newSymbols...)
 			symbols = util.UniqueStrings(symbols)
-			err = nil
 		}
 		// compile tests again
 		stderr, err = call.GoTest(rootPkg, recursiveBuild)
@@ -91,7 +90,6 @@ func Down(rootPkg string, recursiveBuild bool) error {
 			}
 			symbols = append(symbols, newSymbols...)
 			symbols = util.UniqueStrings(symbols)
-			err = nil
 		} else if !buildErr {
 			log.Printf("done after %d iterations!", iterations)
 			return teardownDirs(nil, rootPkg) // done
