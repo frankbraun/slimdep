@@ -35,9 +35,6 @@ type ListEntry struct {
 	Hash     [32]byte
 }
 
-// EmptyHash is the hash an empty directory tree (in hex notation).
-const EmptyHash = "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
-
 // List returns a list in lexical order of ListEntry structs of all files in
 // the file tree rooted at root. See ListHash function for details.
 func List(root string, excludePaths []string) ([]ListEntry, error) {
