@@ -1,0 +1,3 @@
+package vendored
+
+func Foo() {}
