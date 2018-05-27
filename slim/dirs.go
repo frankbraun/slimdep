@@ -49,7 +49,7 @@ func setupDirs(rootPkg string) error {
 		return err
 	}
 	if exists {
-		log.Printf("remove directory %d", failedVendorDir)
+		log.Printf("remove directory %s", failedVendorDir)
 		if err := os.RemoveAll(failedVendorDir); err != nil {
 			return err
 		}
