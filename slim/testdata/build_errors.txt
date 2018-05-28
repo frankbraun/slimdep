@@ -1,10 +1,2 @@
-vendor/golang.org/x/sys/cpu/cpu_x86.go:20:2: undefined: X86
-vendor/golang.org/x/sys/cpu/cpu_x86.go:22:2: undefined: X86
-vendor/golang.org/x/sys/cpu/cpu_x86.go:23:2: undefined: X86
-vendor/golang.org/x/sys/cpu/cpu_x86.go:24:2: undefined: X86
-vendor/golang.org/x/sys/cpu/cpu_x86.go:25:2: undefined: X86
-vendor/golang.org/x/sys/cpu/cpu_x86.go:26:2: undefined: X86
-vendor/golang.org/x/sys/cpu/cpu_x86.go:27:2: undefined: X86
-vendor/golang.org/x/sys/cpu/cpu_x86.go:28:2: undefined: X86
-vendor/golang.org/x/sys/cpu/cpu_x86.go:29:2: undefined: X86
-vendor/golang.org/x/sys/cpu/cpu_x86.go:30:2: undefined: X86
+vendor/github.com/mattn/go-xmpp/xmpp.go:269:8: undefined: saslFailure
+vendor/github.com/mattn/go-xmpp/xmpp.go:270:20: v.Text undefined (type interface {} is interface with no methods)

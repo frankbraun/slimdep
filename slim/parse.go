@@ -46,6 +46,12 @@ func parseBuildError(stderr *bytes.Buffer) ([]string, error) {
 			continue
 		}
 
+		// interface with no methods (previous line should contain missing type)
+		if strings.Contains(line, "(type interface {} is interface with no methods)") {
+			log.Printf("match: %s\n", line)
+			continue
+		}
+
 		// cannot use line
 		if cannotUseRE.MatchString(line) {
 			log.Printf("match: %s\n", line)
