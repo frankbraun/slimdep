@@ -1,2 +1,8 @@
 vendor/github.com/mattn/go-xmpp/xmpp.go:269:8: undefined: saslFailure
 vendor/github.com/mattn/go-xmpp/xmpp.go:270:20: v.Text undefined (type interface {} is interface with no methods)
+vendor/github.com/gdamore/tcell/attr.go:21:7: const initializer AttrBold | AttrBlink | AttrReverse | AttrUnderline | AttrDim is not a constant
+vendor/github.com/gdamore/tcell/attr.go:21:17: undefined: AttrBold
+vendor/github.com/gdamore/tcell/attr.go:21:28: undefined: AttrBlink
+vendor/github.com/gdamore/tcell/attr.go:21:40: undefined: AttrReverse
+vendor/github.com/gdamore/tcell/attr.go:21:54: undefined: AttrUnderline
+vendor/github.com/gdamore/tcell/attr.go:21:70: undefined: AttrDim

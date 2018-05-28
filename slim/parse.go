@@ -14,6 +14,7 @@ import (
 const ident = "\\p{L}[\\p{L}\\p{N}]*" // Go identifier
 
 var (
+	constInitializerRE      = regexp.MustCompile("const initializer .* is not a constant")
 	cannotUseRE             = regexp.MustCompile("cannot use .* as type .* in")
 	missingMethodRE         = regexp.MustCompile(fmt.Sprintf("missing (%s) method", ident))
 	missingMethodOtherPkgRE = regexp.MustCompile(fmt.Sprintf("\t(%s)\\.%s does not implement %s\\.Interface \\(missing %s method\\)",
@@ -48,6 +49,12 @@ func parseBuildError(stderr *bytes.Buffer) ([]string, error) {
 
 		// interface with no methods (previous line should contain missing type)
 		if strings.Contains(line, "(type interface {} is interface with no methods)") {
+			log.Printf("match: %s\n", line)
+			continue
+		}
+
+		// const initializer
+		if constInitializerRE.MatchString(line) {
 			log.Printf("match: %s\n", line)
 			continue
 		}
