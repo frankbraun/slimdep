@@ -19,7 +19,7 @@ var (
 	missingMethodRE         = regexp.MustCompile(fmt.Sprintf("missing (%s) method", ident))
 	missingMethodOtherPkgRE = regexp.MustCompile(fmt.Sprintf("\t(%s)\\.%s does not implement %s\\.Interface \\(missing %s method\\)",
 		ident, ident, ident, ident))
-	missingMethodSamePkgRE = regexp.MustCompile(fmt.Sprintf("\\(type \\*?(%s)\\.%s has no field or method (%s)\\)",
+	missingMethodSamePkgRE = regexp.MustCompile(fmt.Sprintf("\\(type \\*?(%s)\\.%s has no field or method (%s)",
 		ident, ident, ident))
 	missingMethodNoPkgRE = regexp.MustCompile(fmt.Sprintf("\\(type \\*?%s has no field or method (%s)",
 		ident, ident))
