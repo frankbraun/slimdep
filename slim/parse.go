@@ -65,6 +65,14 @@ func parseBuildError(stderr *bytes.Buffer) ([]string, error) {
 			continue
 		}
 
+		// impossible type assertion
+		if strings.Contains(line, "impossible type assertion") {
+			log.Printf("match: %s\n", line)
+			// skip it, will be processed in next line
+			prev = line
+			continue
+		}
+
 		// cannot use line
 		if cannotUseRE.MatchString(line) {
 			log.Printf("match: %s\n", line)

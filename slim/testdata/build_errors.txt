@@ -12,3 +12,5 @@ vendor/github.com/lucasb-eyer/go-colorful/colors.go:19:25: undefined: D65
 vendor/github.com/lucasb-eyer/go-colorful/colors.go:27:9: undefined: HclWhiteRef
 vendor/github.com/lucasb-eyer/go-colorful/colors.go:27:30: undefined: D65
 ui/main.go:18:32: tview.NewList().ShowSecondaryText undefined (type *tview.List has no field or method ShowSecondaryText, but does have tview.showSecondaryText)
+vendor/github.com/ronperry/cryptoedge/jjm/generic.go:30:17: impossible type assertion:
+	BlindingParamClient does not implement genericblinding.BlindingParamClient (missing Marshal method)
